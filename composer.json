@@ -1,0 +1,24 @@
+{
+    "name": "mehdirajabi/filterable",
+    "description": "Filter eloquent model by array query strings",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Mehdirajabi\\Filterable\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mehdi Rajabi",
+            "email": "mehdints@gmail.com"
+        }
+    ],
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mehdirajabi\\Filterable\\FilterableServiceProvider"
+            ]
+        }
+    }
+}
