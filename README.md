@@ -1,4 +1,4 @@
-Filter eloquent model by array query strings
+**Filter eloquent model by array query strings**
 
 **Introduction**
 
@@ -16,7 +16,9 @@ Improves code readability and maintainability by separating filtering logic from
 
 You can install the package via Composer by running the following command:
 
-`composer require mehdirajabi/filterable`
+```php
+composer require mehdirajabi/filterable
+```
 
 **Usage**
 
