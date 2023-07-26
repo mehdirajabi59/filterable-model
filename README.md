@@ -62,6 +62,21 @@ As default operator for all columns is like operator
 **3. Relational filter**
 
 To filter on relation you must add name column as nested for example user has relation with profile and profile has sex column for do this use below convention:
+
+```php
+use  Mehdirajabi\Filterable\Filterable;;
+
+class User extends Model
+{
+    use Filterable;
+
+    public function profile()
+    {
+        return $this->hasOne(UserProfile::class);
+    }
+}
+```
+
 `http://test.com/api/user/users?filterColumns[0]=profile.sex&filterValues[0]=male`
 
 **4. Change filter mode operator**
