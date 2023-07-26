@@ -1,6 +1,7 @@
 {
     "name": "mehdirajabi/filterable",
     "description": "Filter eloquent model by array query strings",
+    "version": "1.0.0",
     "license": "MIT",
     "autoload": {
         "psr-4": {
