@@ -105,7 +105,7 @@ class User extends Model
 ```
 
 
-`http://test.com/users?filterColumns[0]=created_at&filterValues[0]=2023-06-23,2023-06-24,23:59:59
+`http://test.com/users?filterColumns[0]=created_at&filterValues[0]=2023-06-23 00:00:00, 2023-06-24 23:59:59
 `
 
 
