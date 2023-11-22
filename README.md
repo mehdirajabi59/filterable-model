@@ -1,42 +1,40 @@
-**Filter eloquent model by array query strings**
+# Filter Eloquent Models by Array Query Strings
 
-**Introduction**
+## Introduction
 
-Laravel Filterable Trait is a powerful package that provides a reusable trait for easily implementing filter functionality in your Laravel Eloquent models. It allows you to filter query results based on multiple parameters, making it easier to create dynamic and flexible APIs or data filtering mechanisms in your applications.
+The Laravel Filterable Trait is a powerful package providing a reusable trait for easily implementing filter functionality in your Laravel Eloquent models. It enables filtering query results based on multiple parameters, making it simpler to create dynamic and flexible APIs or data filtering mechanisms in your applications.
 
-**Features**
+## Features
 
-Easily implement filtering on Eloquent models.
-Filter data based on various query parameters.
-Support for multiple filter types, such as exact matches, partial matches, ranges, etc.
-Customizable and extensible for adding new filter types.
-Improves code readability and maintainability by separating filtering logic from the main model.
+- Easily implement filtering on Eloquent models.
+- Filter data based on various query parameters.
+- Support for multiple filter types, such as exact matches, partial matches, ranges, etc.
+- Customizable and extensible for adding new filter types.
+- Improves code readability and maintainability by separating filtering logic from the main model.
 
-**Installation**
+## Installation
 
 You can install the package via Composer by running the following command:
 
-```php
+```bash
 composer require mehdirajabi/filterable
 ```
 
-**Usage**
+## Usage
+## 1. Apply the Filterable Trait to Your Eloquent Model
 
-**1**. **Apply the Filterable Trait to your Eloquent Model**
-
-
-   Open the Eloquent model where you want to apply the filtering functionality and add the Filterable trait:
+Open the Eloquent model where you want to apply the filtering functionality and add the Filterable trait:
 
 ```php
-use  Mehdirajabi\Filterable\Filterable;;
+use Mehdirajabi\Filterable\Filterable;
 
 class User extends Model
 {
     use Filterable;
-
-    
 }
 ```
+
+In your controller:
 
 ```php
 class UserController extends Controller
@@ -48,23 +46,22 @@ class UserController extends Controller
 }
 ```
 
-**2**. **How to Filterable work ?**
+## 2. How Does Filterable Work?
 
-We have two queries string, filterColumns and filterValues both are array.
-As default operator for all columns is like operator
+Two query strings, filterColumns and filterValues, are used, both being arrays. The default operator for all columns is the "like" operator.
 
-`http://test.com/api/user/users?filterColumns[0]=columnName&filterValues[0]=Value`
-
-**For example**:
-
-`http://test.com/api/user/users?filterColumns[0]=name&filterValues[0]=Alex`
-
-**3. Relational filter**
-
-To filter on relation you must add name column as nested for example user has relation with profile and profile has sex column for do this use below convention:
+For example:
 
 ```php
-use  Mehdirajabi\Filterable\Filterable;;
+http://test.com/api/user/users?filterColumns[0]=name&filterValues[0]=Alex
+```
+
+## 3. Relational Filter
+
+To filter on a relation, add the column name as nested. For example, if a user has a relation with a profile and the profile has a 'sex' column, use the following convention:
+
+```php
+use Mehdirajabi\Filterable\Filterable;
 
 class User extends Model
 {
@@ -77,24 +74,26 @@ class User extends Model
 }
 ```
 
-`http://test.com/api/user/users?filterColumns[0]=profile.sex&filterValues[0]=male`
+```php
+http://test.com/api/user/users?filterColumns[0]=profile.sex&filterValues[0]=male
+```
 
-**4. Change filter mode operator**
+## 4. Change Filter Mode Operator
 
-To change operator of status column you must define filterMode property: 
+To change the operator of the 'status' column, define the filterMode property:
+
 ```php
 use Mehdirajabi\Filterable\Operators\FilterEqual;
 
 class User extends Model
 {
-        protected $filterMode = [
+    protected $filterMode = [
         'status' => FilterEqual::class
     ];
 }
 ```
 
-
-**5.Change operator in controller**
+## 5. Change Operator in Controller
 
 ```php
 use Mehdirajabi\Filterable\Operators\FilterBetween;
@@ -105,25 +104,22 @@ class UserController extends Controller
     {
         return User::filter(['id' => FilterBetween::class])->paginate(100);
     }
+}
 ```
 
-**Between Operator**
+## Between Operator
 
 ```php
-
 use Mehdirajabi\Filterable\Operators\FilterBetween;
 
 class User extends Model
 {
-        protected $filterMode = [
+    protected $filterMode = [
         'created_at' => FilterBetween::class
     ];
 }
 ```
 
-
-`http://test.com/users?filterColumns[0]=created_at&filterValues[0]=2023-06-23 00:00:00, 2023-06-24 23:59:59
-`
-
-
-
+```php
+http://test.com/users?filterColumns[0]=created_at&filterValues[0]=2023-06-23 00:00:00, 2023-06-24 23:59:59
+```
